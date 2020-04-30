@@ -1,13 +1,14 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven3_5_4'
+        maven 'apache-maven-3.5.4'
     }
 
     stages {
         stage ('Compile Stage') {
 
             steps {
+                    sh 'mvn --version'
                     sh 'mvn -B -DskipTests clean package'
                   }
         }

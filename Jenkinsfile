@@ -1,28 +1,28 @@
 pipeline {
+
     agent any
+    tools {
+        maven 'apache-maven-3.5.4'
+    }
     stages {
-        stage ('Compile Stage') {
-
+        stage('Compile stage') {
             steps {
-                withMaven(maven : 'apache-maven-3.5.4') {
-                    bat 'mvn clean compile'
-                }
-            }
-        }
-        stage ('Testing Stage') {
-
-            steps {
-                withMaven(maven : 'apache-maven-3.5.4') {
-                    bat 'mvn test'
-                }
-            }
-        }
-        stage ('Install Stage') {
-            steps {
-                withMaven(maven : 'apache-maven-3.5.4') {
-                    bat 'mvn install'
-                }
-            }
+                bat "mvn clean compile"
         }
     }
+
+         stage('testing stage') {
+             steps {
+                bat "mvn test"
+        }
+    }
+
+          stage('deployment stage') {
+              steps {
+                bat "mvn deploy"
+        }
+    }
+
+  }
+
 }
